@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base href="https://lebongout-restaurant.com/reservations">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Le Bon Goût - Réservations</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400;700&display=swap');
+
+  :root {
+    --primary-color: #8E3200;
+    --secondary-color: #A64B2A;
+    --accent-color: #D7A86E;
+    --text-color: #2B2B2B;
+    --background-color: #FFF8E8;
+    --cancel-color: #D32F2F;
+  }
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.6;
+  }
+
+  nav {
+    background-color: var(--secondary-color);
+    padding: 1rem;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    transition: background-color 0.3s ease;
+  }
+
+  nav.scrolled {
+    background-color: rgba(166, 75, 42, 0.9);
+  }
+
+  nav ul {
+    list-style-type: none;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  nav ul li {
+    margin: 0.5rem;
+  }
+
+  nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+    padding: 0.5rem 1rem;
+  }
+
+  nav ul li a:hover {
+    color: var(--accent-color);
+  }
+
+  header {
+    background-color: var(--primary-color);
+    color: white;
+    text-align: center;
+    padding: 6rem 1rem 2rem;
+    background-image: url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80');
+    background-size: cover;
+    background-position: center;
+    position: relative;
+  }
+
+  header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(142, 50, 0, 0.7);
+  }
+
+  h1, h2 {
+    font-family: 'Playfair Display', serif;
+    position: relative;
+  }
+
+  h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+  }
+
+  h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  header p {
+    position: relative;
+  }
+
+  main {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+  }
+
+  form {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  }
+
+  .form-group {
+    margin-bottom: 1.5rem;
+  }
+
+  label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+  }
+
+  input, select, textarea {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+  }
+
+  button {
+    background-color: var(--secondary-color);
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  button:hover {
+    background-color: var(--primary-color);
+  }
+
+  footer {
+    background-color: var(--primary-color);
+    color: white;
+    text-align: center;
+    padding: 1rem;
+    margin-top: 2rem;
+  }
+
+  #reservation-receipt {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 2000;
+    overflow-y: auto;
+  }
+
+  .receipt-content {
+    background-color: white;
+    max-width: 600px;
+    margin: 2rem auto;
+    padding: 2rem;
+    border-radius: 8px;
+    position: relative;
+  }
+
+  .close-receipt {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 1.5rem;
+    cursor: pointer;
+    background: none;
+    border: none;
+    color: var(--text-color);
+  }
+
+  #confirm-reservation, #cancel-reservation {
+    display: block;
+    width: 100%;
+    margin-top: 1rem;
+  }
+
+  #confirm-reservation {
+    background-color: var(--accent-color);
+  }
+
+  #confirm-reservation:hover {
+    background-color: var(--secondary-color);
+  }
+
+  #cancel-reservation {
+    background-color: var(--cancel-color);
+  }
+
+  #cancel-reservation:hover {
+    background-color: #B71C1C;
+  }
+
+  .button-group {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+  }
+
+  .button-group button {
+    width: 48%;
+  }
+
+  @media (max-width: 768px) {
+    nav ul {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    h1 {
+      font-size: 2rem;
+    }
+
+    form {
+      padding: 1rem;
+    }
+
+    .button-group {
+      flex-direction: column;
+    }
+
+    .button-group button {
+      width: 100%;
+      margin-top: 0.5rem;
+    }
+  }
+</style>
+</head>
+<body>
+  <nav>
+    <ul>
+      <li><a href="/">Accueil</a></li>
+      <li><a href="/menu">Menu</a></li>
+      <li><a href="/reservations">Réservations</a></li>
+      <li><a href="/commande">Commande</a></li>
+      <li><a href="/contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <header>
+    <h1>Réservez votre table</h1>
+    <p>Profitez d'une expérience gastronomique unique</p>
+  </header>
+  
+  <main>
+    <form id="reservation-form">
+      <div class="form-group">
+        <label for="name">Nom complet</label>
+        <input type="text" id="name" name="name" required>
+      </div>
+      <div class="form-group">
+        <label for="email">Adresse e-mail</label>
+        <input type="email" id="email" name="email" required>
+      </div>
+      <div class="form-group">
+        <label for="phone">Numéro de téléphone</label>
+        <input type="tel" id="phone" name="phone" required>
+      </div>
+      <div class="form-group">
+        <label for="date">Date</label>
+        <input type="date" id="date" name="date" required>
+      </div>
+      <div class="form-group">
+        <label for="time">Heure</label>
+        <input type="time" id="time" name="time" required>
+      </div>
+      <div class="form-group">
+        <label for="guests">Nombre de personnes</label>
+        <select id="guests" name="guests" required>
+          <option value="">Sélectionnez</option>
+          <option value="1">1 personne</option>
+          <option value="2">2 personnes</option>
+          <option value="3">3 personnes</option>
+          <option value="4">4 personnes</option>
+          <option value="5">5 personnes</option>
+          <option value="6">6 personnes</option>
+          <option value="7+">7 personnes ou plus</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="special-requests">Demandes spéciales</label>
+        <textarea id="special-requests" name="special-requests" rows="4"></textarea>
+      </div>
+      <button type="submit">Réserver</button>
+    </form>
+  </main>
+
+  <div id="reservation-receipt">
+    <div class="receipt-content">
+      <button class="close-receipt">&times;</button>
+      <h2>Confirmation de réservation</h2>
+      <div id="receipt-details"></div>
+      <div class="button-group">
+        <button id="confirm-reservation">Réserver maintenant</button>
+        <button id="cancel-reservation">Annuler la réservation</button>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>&copy; 2023 Le Bon Goût Restaurant. Tous droits réservés.</p>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+      const nav = document.querySelector('nav');
+      const reservationForm = document.getElementById('reservation-form');
+      const reservationReceipt = document.getElementById('reservation-receipt');
+      const receiptDetails = document.getElementById('receipt-details');
+      const closeReceiptButton = document.querySelector('.close-receipt');
+      const confirmReservationButton = document.getElementById('confirm-reservation');
+      const cancelReservationButton = document.getElementById('cancel-reservation');
+
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+          nav.classList.add('scrolled');
+        } else {
+          nav.classList.remove('scrolled');
+        }
+      });
+
+      reservationForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const formData = new FormData(reservationForm);
+        let receiptHTML = '<h3>Détails de votre réservation :</h3>';
+        for (let [key, value] of formData.entries()) {
+          receiptHTML += `<p><strong>${key}:</strong> ${value}</p>`;
+        }
+        receiptDetails.innerHTML = receiptHTML;
+        reservationReceipt.style.display = 'block';
+      });
+
+      closeReceiptButton.addEventListener('click', () => {
+        reservationReceipt.style.display = 'none';
+      });
+
+      confirmReservationButton.addEventListener('click', () => {
+        const formData = new FormData(reservationForm);
+        let message = "Nouvelle réservation :\n\n";
+        for (let [key, value] of formData.entries()) {
+          message += `${key}: ${value}\n`;
+        }
+        const encodedMessage = encodeURIComponent(message);
+        const whatsappUrl = `https://wa.me/243975130019?text=${encodedMessage}`;
+        window.open(whatsappUrl, '_blank');
+        reservationReceipt.style.display = 'none';
+        alert('Votre réservation a été confirmée. Merci !');
+      });
+
+      cancelReservationButton.addEventListener('click', () => {
+        reservationReceipt.style.display = 'none';
+        reservationForm.reset();
+        alert('Votre réservation a été annulée.');
+      });
+
+      // Gestion du menu responsive
+      const menuToggle = document.createElement('button');
+      menuToggle.textContent = '☰';
+      menuToggle.style.cssText = `
+        display: none;
+        background: none;
+        border: none;
+        color: white;
+        font-size: 1.5rem;
+        cursor: pointer;
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+      `;
+
+      nav.appendChild(menuToggle);
+
+      const navList = nav.querySelector('ul');
+
+      function toggleMenu() {
+        navList.classList.toggle('show');
+      }
+
+      menuToggle.addEventListener('click', toggleMenu);
+
+      function checkWidth() {
+        if (window.innerWidth <= 768) {
+          menuToggle.style.display = 'block';
+          navList.style.display = 'none';
+          navList.classList.remove('show');
+        } else {
+          menuToggle.style.display = 'none';
+          navList.style.display = 'flex';
+        }
+      }
+
+      window.addEventListener('resize', checkWidth);
+      checkWidth();
+
+      // Ajout de styles pour le menu responsive
+      const style = document.createElement('style');
+      style.textContent = `
+        @media (max-width: 768px) {
+          nav ul.show {
+            display: flex !important;
+            flex-direction: column;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background-color: var(--secondary-color);
+            padding: 1rem;
+          }
+        }
+      `;
+      document.head.appendChild(style);
+    });
+  </script>
+</body></html>

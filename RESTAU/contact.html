@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html><head><base href="https://lebongout-restaurant.com/contact">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Le Bon Goût - Contact</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400;700&display=swap');
+
+  :root {
+    --primary-color: #8E3200;
+    --secondary-color: #A64B2A;
+    --accent-color: #D7A86E;
+    --text-color: #2B2B2B;
+    --background-color: #FFF8E8;
+  }
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.6;
+  }
+
+  nav {
+    background-color: var(--secondary-color);
+    padding: 1rem;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+  }
+
+  nav ul {
+    list-style-type: none;
+    display: flex;
+    justify-content: center;
+  }
+
+  nav ul li {
+    margin: 0 1rem;
+  }
+
+  nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+  }
+
+  nav ul li a:hover {
+    color: var(--accent-color);
+  }
+
+  header {
+    background-color: var(--primary-color);
+    color: white;
+    text-align: center;
+    padding: 4rem 1rem 2rem;
+    background-image: url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1200&q=80');
+    background-size: cover;
+    background-position: center;
+    position: relative;
+  }
+
+  header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(142, 50, 0, 0.7);
+  }
+
+  h1, h2 {
+    font-family: 'Playfair Display', serif;
+    position: relative;
+  }
+
+  h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+  }
+
+  header p {
+    position: relative;
+    font-size: 1.2rem;
+  }
+
+  main {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+  }
+
+  .contact-info, .contact-form {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    margin-bottom: 2rem;
+  }
+
+  .contact-info h2, .contact-form h2 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+  }
+
+  .contact-info p {
+    margin-bottom: 0.5rem;
+  }
+
+  .form-group {
+    margin-bottom: 1rem;
+  }
+
+  label {
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+
+  input, textarea {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+
+  button {
+    background-color: var(--secondary-color);
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  button:hover {
+    background-color: var(--primary-color);
+  }
+
+  #map {
+    height: 300px;
+    width: 100%;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  footer {
+    background-color: var(--primary-color);
+    color: white;
+    text-align: center;
+    padding: 1rem;
+    margin-top: 2rem;
+  }
+
+  @media (max-width: 768px) {
+    nav ul {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    nav ul li {
+      margin: 0.5rem 0;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+    }
+  }
+</style>
+</head>
+<body>
+  <nav>
+    <ul>
+      <li><a href="/">Accueil</a></li>
+      <li><a href="/menu">Menu</a></li>
+      <li><a href="/reservations">Réservations</a></li>
+      <li><a href="/commande">Commande</a></li>
+      <li><a href="/contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <header>
+    <h1>Contactez-nous</h1>
+    <p>Nous sommes à votre écoute</p>
+  </header>
+
+  <main>
+    <section class="contact-info">
+      <h2>Informations de contact</h2>
+      <p><strong>Adresse:</strong> 123 Rue de la Gastronomie, 75001 Paris</p>
+      <p><strong>Téléphone:</strong> +33 1 23 45 67 89</p>
+      <p><strong>Email:</strong> tshcherubin@gmail.com</p>
+      <p><strong>Horaires d'ouverture:</strong></p>
+      <p>Lundi - Samedi: 11h30 - 14h30, 19h00 - 22h30</p>
+      <p>Dimanche: Fermé</p>
+    </section>
+
+    <section class="contact-form">
+      <h2>Envoyez-nous un message</h2>
+      <form id="contact-form">
+        <div class="form-group">
+          <label for="name">Nom</label>
+          <input type="text" id="name" name="name" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+        <div class="form-group">
+          <label for="subject">Sujet</label>
+          <input type="text" id="subject" name="subject" required>
+        </div>
+        <div class="form-group">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" rows="5" required></textarea>
+        </div>
+        <button type="submit">Envoyer</button>
+      </form>
+    </section>
+
+    <section id="map">
+      <!-- Google Maps will be embedded here -->
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2023 Le Bon Goût Restaurant. Tous droits réservés.</p>
+  </footer>
+
+  <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap" async defer></script>
+  <script>
+    function initMap() {
+      const restaurantLocation = { lat: 48.8566, lng: 2.3522 }; // Paris coordinates
+      const map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 15,
+        center: restaurantLocation
+      });
+      const marker = new google.maps.Marker({
+        position: restaurantLocation,
+        map: map,
+        title: 'Le Bon Goût Restaurant'
+      });
+    }
+
+    document.getElementById('contact-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      // Collect form data
+      const formData = new FormData(this);
+      const data = Object.fromEntries(formData.entries());
+      
+      // Construct email body
+      const emailBody = `
+        Nom: ${data.name}
+        Email: ${data.email}
+        Sujet: ${data.subject}
+        Message: ${data.message}
+      `;
+      
+      // Encode the email body for use in mailto link
+      const encodedBody = encodeURIComponent(emailBody);
+      
+      // Open default email client with pre-filled email
+      window.location.href = `mailto:tshcherubin@gmail.com?subject=${encodeURIComponent(data.subject)}&body=${encodedBody}`;
+      
+      // Reset the form
+      this.reset();
+      
+      // Show confirmation message
+      alert('Merci pour votre message. Votre email a été préparé dans votre client de messagerie par défaut.');
+    });
+
+    // Responsive navigation
+    const nav = document.querySelector('nav');
+    const menuToggle = document.createElement('button');
+    menuToggle.textContent = '☰';
+    menuToggle.style.cssText = `
+      display: none;
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1.5rem;
+      cursor: pointer;
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+    `;
+
+    nav.appendChild(menuToggle);
+
+    const navList = nav.querySelector('ul');
+
+    function toggleMenu() {
+      navList.classList.toggle('show');
+    }
+
+    menuToggle.addEventListener('click', toggleMenu);
+
+    function checkWidth() {
+      if (window.innerWidth <= 768) {
+        menuToggle.style.display = 'block';
+        navList.style.display = 'none';
+        navList.classList.remove('show');
+      } else {
+        menuToggle.style.display = 'none';
+        navList.style.display = 'flex';
+      }
+    }
+
+    window.addEventListener('resize', checkWidth);
+    checkWidth();
+
+    // Add styles for responsive menu
+    const style = document.createElement('style');
+    style.textContent = `
+      @media (max-width: 768px) {
+        nav ul.show {
+          display: flex !important;
+          flex-direction: column;
+          position: absolute;
+          top: 100%;
+          left: 0;
+          right: 0;
+          background-color: var(--secondary-color);
+          padding: 1rem;
+        }
+      }
+    `;
+    document.head.appendChild(style);
+  </script>
+</body></html>

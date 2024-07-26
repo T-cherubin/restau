@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html><head><base href="https://lebongout-restaurant.com/commande">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Le Bon Goût - Commande en ligne</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400;700&display=swap');
+
+  :root {
+    --primary-color: #8E3200;
+    --secondary-color: #A64B2A;
+    --accent-color: #D7A86E;
+    --text-color: #2B2B2B;
+    --background-color: #FFF8E8;
+  }
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.6;
+  }
+
+  nav {
+    background-color: var(--secondary-color);
+    padding: 1rem;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+  }
+
+  nav ul {
+    list-style-type: none;
+    display: flex;
+    justify-content: center;
+  }
+
+  nav ul li {
+    margin: 0 1rem;
+  }
+
+  nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+  }
+
+  nav ul li a:hover {
+    color: var(--accent-color);
+  }
+
+  header {
+    background-color: var(--primary-color);
+    color: white;
+    text-align: center;
+    padding: 4rem 1rem 2rem;
+    background-image: url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80');
+    background-size: cover;
+    background-position: center;
+    position: relative;
+  }
+
+  header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(142, 50, 0, 0.7);
+  }
+
+  h1, h2 {
+    font-family: 'Playfair Display', serif;
+    position: relative;
+  }
+
+  h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+  }
+
+  header p {
+    position: relative;
+    font-size: 1.2rem;
+  }
+
+  main {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+  }
+
+  .menu-section {
+    margin-bottom: 2rem;
+  }
+
+  .menu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .menu-item {
+    background-color: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+  }
+
+  .menu-item:hover {
+    transform: translateY(-5px);
+  }
+
+  .menu-item img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+  }
+
+  .menu-item-content {
+    padding: 1rem;
+  }
+
+  .menu-item h3 {
+    margin-bottom: 0.5rem;
+  }
+
+  .menu-item p {
+    color: #666;
+    margin-bottom: 1rem;
+  }
+
+  .menu-item .price {
+    font-weight: bold;
+    color: var(--primary-color);
+  }
+
+  .add-to-cart {
+    background-color: var(--secondary-color);
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .add-to-cart:hover {
+    background-color: var(--primary-color);
+  }
+
+  #cart {
+    position: fixed;
+    top: 80px;
+    right: 20px;
+    background-color: white;
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    max-width: 300px;
+    z-index: 1000;
+  }
+
+  #cart h2 {
+    margin-bottom: 1rem;
+  }
+
+  #cart-items {
+    margin-bottom: 1rem;
+  }
+
+  #cart-total {
+    font-weight: bold;
+    margin-bottom: 1rem;
+  }
+
+  #checkout {
+    background-color: var(--accent-color);
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  #checkout:hover {
+    background-color: var(--secondary-color);
+  }
+
+  footer {
+    background-color: var(--primary-color);
+    color: white;
+    text-align: center;
+    padding: 1rem;
+    margin-top: 2rem;
+  }
+
+  @media (max-width: 768px) {
+    nav ul {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    nav ul li {
+      margin: 0.5rem 0;
+    }
+
+    .menu-grid {
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+
+    #cart {
+      position: static;
+      max-width: 100%;
+      margin-top: 2rem;
+    }
+  }
+</style>
+</head>
+<body>
+  <nav>
+    <ul>
+      <li><a href="/">Accueil</a></li>
+      <li><a href="/menu">Menu</a></li>
+      <li><a href="/reservations">Réservations</a></li>
+      <li><a href="/commande">Commande</a></li>
+      <li><a href="/contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <header>
+    <h1>Commandez en ligne</h1>
+    <p>Savourez nos délices depuis le confort de votre foyer</p>
+  </header>
+
+  <main>
+    <section class="menu-section">
+      <h2>Nos Plats</h2>
+      <div class="menu-grid">
+        <div class="menu-item">
+          <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=300&q=80" alt="Steak Frites">
+          <div class="menu-item-content">
+            <h3>Steak Frites</h3>
+            <p>Steak juteux accompagné de frites croustillantes</p>
+            <p class="price">25€</p>
+            <button class="add-to-cart" data-name="Steak Frites" data-price="25">Ajouter au panier</button>
+          </div>
+        </div>
+        <div class="menu-item">
+          <img src="https://images.unsplash.com/photo-1473093295043-cdd812d0e601?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=300&q=80" alt="Salade Niçoise">
+          <div class="menu-item-content">
+            <h3>Salade Niçoise</h3>
+            <p>Salade fraîche avec thon, œufs et olives</p>
+            <p class="price">18€</p>
+            <button class="add-to-cart" data-name="Salade Niçoise" data-price="18">Ajouter au panier</button>
+          </div>
+        </div>
+        <div class="menu-item">
+          <img src="https://images.unsplash.com/photo-1574484284002-952d92456975?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=300&q=80" alt="Ratatouille">
+          <div class="menu-item-content">
+            <h3>Ratatouille</h3>
+            <p>Légumes du soleil mijotés à la provençale</p>
+            <p class="price">20€</p>
+            <button class="add-to-cart" data-name="Ratatouille" data-price="20">Ajouter au panier</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div id="cart">
+      <h2>Votre Panier</h2>
+      <div id="cart-items"></div>
+      <p id="cart-total">Total: 0€</p>
+      <button id="checkout">Commander</button>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2023 Le Bon Goût Restaurant. Tous droits réservés.</p>
+  </footer>
+
+  <script>
+    let cart = [];
+
+    function updateCart() {
+      const cartItems = document.getElementById('cart-items');
+      const cartTotal = document.getElementById('cart-total');
+      
+      cartItems.innerHTML = '';
+      let total = 0;
+
+      cart.forEach((item, index) => {
+        const itemElement = document.createElement('div');
+        itemElement.textContent = `${item.name} - ${item.price}€`;
+        
+        const removeButton = document.createElement('button');
+        removeButton.textContent = 'Retirer';
+        removeButton.onclick = () => removeFromCart(index);
+        
+        itemElement.appendChild(removeButton);
+        cartItems.appendChild(itemElement);
+        
+        total += item.price;
+      });
+
+      cartTotal.textContent = `Total: ${total}€`;
+    }
+
+    function addToCart(name, price) {
+      cart.push({ name, price });
+      updateCart();
+    }
+
+    function removeFromCart(index) {
+      cart.splice(index, 1);
+      updateCart();
+    }
+
+    document.querySelectorAll('.add-to-cart').forEach(button => {
+      button.addEventListener('click', () => {
+        const name = button.getAttribute('data-name');
+        const price = parseFloat(button.getAttribute('data-price'));
+        addToCart(name, price);
+      });
+    });
+
+    document.getElementById('checkout').addEventListener('click', () => {
+      if (cart.length === 0) {
+        alert('Votre panier est vide.');
+        return;
+      }
+
+      let message = "Nouvelle commande :\n\n";
+      cart.forEach(item => {
+        message += `${item.name} - ${item.price}€\n`;
+      });
+      message += `\nTotal: ${cart.reduce((sum, item) => sum + item.price, 0)}€`;
+
+      const encodedMessage = encodeURIComponent(message);
+      const whatsappUrl = `https://wa.me/243975130019?text=${encodedMessage}`;
+      window.open(whatsappUrl, '_blank');
+
+      cart = [];
+      updateCart();
+      alert('Votre commande a été envoyée. Merci !');
+    });
+
+    // Responsive menu
+    const nav = document.querySelector('nav');
+    const menuToggle = document.createElement('button');
+    menuToggle.textContent = '☰';
+    menuToggle.style.cssText = `
+      display: none;
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1.5rem;
+      cursor: pointer;
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+    `;
+
+    nav.appendChild(menuToggle);
+
+    const navList = nav.querySelector('ul');
+
+    function toggleMenu() {
+      navList.classList.toggle('show');
+    }
+
+    menuToggle.addEventListener('click', toggleMenu);
+
+    function checkWidth() {
+      if (window.innerWidth <= 768) {
+        menuToggle.style.display = 'block';
+        navList.style.display = 'none';
+        navList.classList.remove('show');
+      } else {
+        menuToggle.style.display = 'none';
+        navList.style.display = 'flex';
+      }
+    }
+
+    window.addEventListener('resize', checkWidth);
+    checkWidth();
+
+    // Add styles for responsive menu
+    const style = document.createElement('style');
+    style.textContent = `
+      @media (max-width: 768px) {
+        nav ul.show {
+          display: flex !important;
+          flex-direction: column;
+          position: absolute;
+          top: 100%;
+          left: 0;
+          right: 0;
+          background-color: var(--secondary-color);
+          padding: 1rem;
+        }
+      }
+    `;
+    document.head.appendChild(style);
+  </script>
+</body></html>

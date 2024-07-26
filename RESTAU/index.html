@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base href="https://lebongout-restaurant.com/">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Le Bon Goût - Cuisine Française Raffinée</title>
+    <style>
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400;700&display=swap');
+      :root {
+        --primary-color: #8E3200;
+        --secondary-color: #A64B2A;
+        --accent-color: #D7A86E;
+        --text-color: #2B2B2B;
+        --background-color: #FFF8E8;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        font-family: 'Roboto', sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: var(--background-color);
+        color: var(--text-color);
+      }
+      nav {
+        background-color: var(--secondary-color);
+        padding: 1rem;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1000;
+        transition: background-color 0.3s ease;
+      }
+      nav.scrolled {
+        background-color: rgba(166, 75, 42, 0.9);
+      }
+
+      nav ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+
+      nav ul li {
+        margin: 0.5rem;
+      }
+
+      nav ul li a {
+        color: white;
+        text-decoration: none;
+        font-weight: bold;
+        transition: color 0.3s ease;
+        padding: 0.5rem 1rem;
+      }
+
+      nav ul li a:hover {
+        color: var(--accent-color);
+      }
+
+      header {
+        background-color: var(--primary-color);
+        color: white;
+        text-align: center;
+        padding: 6rem 1rem 2rem;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .header-bg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80');
+        background-size: cover;
+        background-position: center;
+        opacity: 0.3;
+        z-index: 1;
+      }
+
+      h1 {
+        font-family: 'Playfair Display', serif;
+        margin: 0;
+        font-size: 3.5rem;
+        position: relative;
+        z-index: 2;
+      }
+
+      main {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 2rem 1rem;
+      }
+
+      .hero {
+        text-align: center;
+        margin-bottom: 3rem;
+      }
+
+      .hero h2 {
+        font-family: 'Playfair Display', serif;
+        font-size: 2.5rem;
+        color: var(--primary-color);
+      }
+
+      .featured-dishes {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 2rem;
+      }
+
+      .dish {
+        background-color: white;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .dish:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+      }
+
+      .dish img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+      }
+
+      .dish-info {
+        padding: 1.5rem;
+      }
+
+      .dish-info h3 {
+        font-family: 'Playfair Display', serif;
+        margin-top: 0;
+        color: var(--primary-color);
+      }
+
+      .price {
+        font-weight: bold;
+        color: var(--secondary-color);
+      }
+
+      .cta {
+        text-align: center;
+        margin-top: 3rem;
+      }
+
+      .cta-buttons {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 1rem;
+        margin-top: 1.5rem;
+      }
+
+      .btn {
+        display: inline-block;
+        background-color: var(--primary-color);
+        color: white;
+        padding: 0.8rem 1.5rem;
+        text-decoration: none;
+        border-radius: 4px;
+        transition: background-color 0.3s ease, transform 0.3s ease;
+        min-width: 200px;
+      }
+
+      .btn:hover {
+        background-color: var(--secondary-color);
+        transform: scale(1.05);
+      }
+
+      footer {
+        background-color: var(--primary-color);
+        color: white;
+        text-align: center;
+        padding: 1rem;
+      }
+
+      @media (max-width: 768px) {
+        h1 {
+          font-size: 2.5rem;
+        }
+
+        .hero h2 {
+          font-size: 2rem;
+        }
+
+        nav ul {
+          flex-direction: column;
+          align-items: center;
+        }
+
+        nav ul li {
+          margin: 0.25rem;
+        }
+
+        .cta-buttons {
+          flex-direction: column;
+          align-items: center;
+        }
+
+        .btn {
+          width: 100%;
+          max-width: 300px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        h1 {
+          font-size: 2rem;
+        }
+
+        .hero h2 {
+          font-size: 1.5rem;
+        }
+
+        .featured-dishes {
+          grid-template-columns: 1fr;
+        }
+      }
+  </style>
+  </head>
+  <body>
+  <nav>
+    <ul>
+      <li><a href="/menu.html">Menu</a></li>
+      <li><a href="/reservation.html">Réservations</a></li>
+      <li><a href="/commande.html">Commande</a></li>
+      <li><a href="/apropos.html">À propos</a></li>
+      <li><a href="/contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <header>
+    <div class="header-bg"></div>
+    <h1>Le Bon Goût</h1>
+  </header>
+  
+  <main>
+    <section class="hero">
+      <h2>Bienvenue dans notre univers culinaire</h2>
+      <p>Découvrez une expérience gastronomique unique, où tradition et innovation se rencontrent.</p>
+    </section>
+    
+    <section class="featured-dishes">
+      <div class="dish">
+        <img src="https://images.unsplash.com/photo-1600891964092-4316c288032e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Coq au Vin, plat traditionnel français" width="400" height="200">
+        <div class="dish-info">
+          <h3>Coq au Vin</h3>
+          <p>Notre interprétation moderne d'un classique français, servi avec des légumes de saison.</p>
+          <p class="price">26,50 €</p>
+        </div>
+      </div>
+      <div class="dish">
+        <img src="https://images.unsplash.com/photo-1608897013039-887f21d8c804?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Ratatouille colorée et appétissante" width="400" height="200">
+        <div class="dish-info">
+          <h3>Ratatouille Provençale</h3>
+          <p>Un voyage gustatif au cœur de la Provence, préparé avec des légumes bio locaux.</p>
+          <p class="price">19,00 €</p>
+        </div>
+      </div>
+      <div class="dish">
+        <img src="https://images.unsplash.com/photo-1470124182917-cc6e71b22ecc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Crème Brûlée dorée et croustillante" width="400" height="200">
+        <div class="dish-info">
+          <h3>Crème Brûlée</h3>
+          <p>Notre dessert signature réinventé, une symphonie de textures et de saveurs.</p>
+          <p class="price">9,50 €</p>
+        </div>
+      </div>
+    </section>
+    
+    <section class="cta">
+      <h2>Envie de goûter ?</h2>
+      <p>Réservez votre table ou commandez en ligne dès maintenant pour un voyage culinaire inoubliable.</p>
+      <div class="cta-buttons">
+        <a href="/reservations" class="btn">Réserver une table</a>
+        <a href="/commande" class="btn">Commander en ligne</a>
+      </div>
+    </section>
+  </main>
+  
+  <footer>
+    <p>&copy; 2023 Le Bon Goût Restaurant. Tous droits réservés.</p>
+  </footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', (event) => {
+  const nav = document.querySelector('nav');
+  const headerHeight = document.querySelector('header').offsetHeight;
+
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 50) {
+      nav.classList.add('scrolled');
+    } else {
+      nav.classList.remove('scrolled');
+    }
+  });
+
+  const dishes = document.querySelectorAll('.dish');
+  
+  dishes.forEach(dish => {
+    dish.addEventListener('mouseenter', () => {
+      dish.style.transform = 'scale(1.05)';
+    });
+    
+    dish.addEventListener('mouseleave', () => {
+      dish.style.transform = 'scale(1)';
+    });
+  });
+
+  const ctaButtons = document.querySelectorAll('.cta .btn');
+  
+  ctaButtons.forEach(button => {
+    button.addEventListener('mouseenter', () => {
+      button.style.transform = 'scale(1.1)';
+    });
+    
+    button.addEventListener('mouseleave', () => {
+      button.style.transform = 'scale(1)';
+    });
+  });
+
+  // Gestion du menu responsive
+  const menuToggle = document.createElement('button');
+  menuToggle.textContent = '☰';
+  menuToggle.style.cssText = `
+    display: none;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+  `;
+
+  nav.appendChild(menuToggle);
+
+  const navList = nav.querySelector('ul');
+
+  function toggleMenu() {
+    navList.classList.toggle('show');
+  }
+
+  menuToggle.addEventListener('click', toggleMenu);
+
+  function checkWidth() {
+    if (window.innerWidth <= 768) {
+      menuToggle.style.display = 'block';
+      navList.style.display = 'none';
+      navList.classList.remove('show');
+    } else {
+      menuToggle.style.display = 'none';
+      navList.style.display = 'flex';
+    }
+  }
+
+  window.addEventListener('resize', checkWidth);
+  checkWidth();
+
+  // Ajout de styles pour le menu responsive
+  const style = document.createElement('style');
+  style.textContent = `
+    @media (max-width: 768px) {
+      nav ul.show {
+        display: flex !important;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background-color: var(--secondary-color);
+        padding: 1rem;
+      }
+    }
+  `;
+  document.head.appendChild(style);
+});
+</script>
+
+</body>
+</html>

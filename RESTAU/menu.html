@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html><head><base href="https://lebongout-restaurant.com/menu">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Le Bon Goût - Menu Gastronomique</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400;700&display=swap');
+
+  :root {
+    --primary-color: #8E3200;
+    --secondary-color: #A64B2A;
+    --accent-color: #D7A86E;
+    --text-color: #2B2B2B;
+    --background-color: #FFF8E8;
+  }
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.6;
+  }
+
+  nav {
+    background-color: var(--secondary-color);
+    padding: 1rem;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    transition: background-color 0.3s ease;
+  }
+
+  nav.scrolled {
+    background-color: rgba(166, 75, 42, 0.9);
+  }
+
+  nav ul {
+    list-style-type: none;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  nav ul li {
+    margin: 0.5rem;
+  }
+
+  nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+    padding: 0.5rem 1rem;
+  }
+
+  nav ul li a:hover {
+    color: var(--accent-color);
+  }
+
+  header {
+    background-color: var(--primary-color);
+    color: white;
+    text-align: center;
+    padding: 6rem 1rem 2rem;
+    background-image: url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80');
+    background-size: cover;
+    background-position: center;
+    position: relative;
+  }
+
+  header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(142, 50, 0, 0.7);
+  }
+
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    margin: 0;
+    position: relative;
+  }
+
+  main {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+
+  .menu-section {
+    background-color: white;
+    border-radius: 8px;
+    padding: 2rem;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+  }
+
+  .menu-section:hover {
+    transform: translateY(-5px);
+  }
+
+  .menu-section h2 {
+    font-family: 'Playfair Display', serif;
+    color: var(--primary-color);
+    border-bottom: 2px solid var(--accent-color);
+    padding-bottom: 0.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .menu-item {
+    margin-bottom: 1.5rem;
+  }
+
+  .menu-item h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .menu-item p {
+    font-style: italic;
+    margin-bottom: 0.5rem;
+  }
+
+  .price {
+    font-weight: bold;
+    color: var(--secondary-color);
+  }
+
+  footer {
+    background-color: var(--primary-color);
+    color: white;
+    text-align: center;
+    padding: 1rem;
+    margin-top: 2rem;
+  }
+
+  @media (max-width: 768px) {
+    nav ul {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+    }
+
+    main {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 480px) {
+    h1 {
+      font-size: 2rem;
+    }
+
+    .menu-section {
+      padding: 1rem;
+    }
+  }
+</style>
+</head>
+<body>
+  <nav>
+    <ul>
+      <li><a href="/">Accueil</a></li>
+      <li><a href="/menu">Menu</a></li>
+      <li><a href="/reservations">Réservations</a></li>
+      <li><a href="/commande">Commande</a></li>
+      <li><a href="/contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <header>
+    <h1>Notre Menu Gastronomique</h1>
+  </header>
+  
+  <main>
+    <section class="menu-section">
+      <h2>Entrées</h2>
+      <div class="menu-item">
+        <h3>Soupe à l'oignon gratinée</h3>
+        <p>Oignons caramélisés, bouillon de bœuf, pain grillé et fromage gratiné</p>
+        <span class="price">9,50 €</span>
+      </div>
+      <div class="menu-item">
+        <h3>Salade de chèvre chaud</h3>
+        <p>Mesclun, tomates cerises, noix, miel et fromage de chèvre sur toast</p>
+        <span class="price">11,00 €</span>
+      </div>
+      <div class="menu-item">
+        <h3>Terrine de foie gras maison</h3>
+        <p>Accompagnée de chutney de figues et pain brioché toasté</p>
+        <span class="price">15,50 €</span>
+      </div>
+    </section>
+
+    <section class="menu-section">
+      <h2>Plats Principaux</h2>
+      <div class="menu-item">
+        <h3>Coq au vin</h3>
+        <p>Cuisse de coq mijotée au vin rouge, lardons, champignons et pommes de terre</p>
+        <span class="price">22,00 €</span>
+      </div>
+      <div class="menu-item">
+        <h3>Filet de bœuf Rossini</h3>
+        <p>Filet de bœuf, escalope de foie gras poêlée, sauce truffe et pommes château</p>
+        <span class="price">29,50 €</span>
+      </div>
+      <div class="menu-item">
+        <h3>Ratatouille provençale</h3>
+        <p>Légumes du soleil mijotés, servis avec du riz basmati (option végétarienne)</p>
+        <span class="price">18,00 €</span>
+      </div>
+    </section>
+
+    <section class="menu-section">
+      <h2>Desserts</h2>
+      <div class="menu-item">
+        <h3>Crème brûlée à la vanille de Madagascar</h3>
+        <p>Crème onctueuse parfumée à la vanille avec une fine couche de caramel croustillant</p>
+        <span class="price">8,50 €</span>
+      </div>
+      <div class="menu-item">
+        <h3>Tarte Tatin</h3>
+        <p>Tarte aux pommes caramélisées servie tiède avec une boule de glace vanille</p>
+        <span class="price">9,00 €</span>
+      </div>
+      <div class="menu-item">
+        <h3>Profiteroles au chocolat</h3>
+        <p>Choux garnis de crème pâtissière, nappés de sauce au chocolat noir</p>
+        <span class="price">10,50 €</span>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2023 Le Bon Goût Restaurant. Tous droits réservés.</p>
+  </footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', (event) => {
+  const nav = document.querySelector('nav');
+  
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 50) {
+      nav.classList.add('scrolled');
+    } else {
+      nav.classList.remove('scrolled');
+    }
+  });
+
+  const menuSections = document.querySelectorAll('.menu-section');
+  
+  menuSections.forEach(section => {
+    section.addEventListener('mouseenter', () => {
+      section.style.transform = 'scale(1.03)';
+    });
+    
+    section.addEventListener('mouseleave', () => {
+      section.style.transform = 'scale(1)';
+    });
+  });
+
+  // Gestion du menu responsive
+  const menuToggle = document.createElement('button');
+  menuToggle.textContent = '☰';
+  menuToggle.style.cssText = `
+    display: none;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+  `;
+
+  nav.appendChild(menuToggle);
+
+  const navList = nav.querySelector('ul');
+
+  function toggleMenu() {
+    navList.classList.toggle('show');
+  }
+
+  menuToggle.addEventListener('click', toggleMenu);
+
+  function checkWidth() {
+    if (window.innerWidth <= 768) {
+      menuToggle.style.display = 'block';
+      navList.style.display = 'none';
+      navList.classList.remove('show');
+    } else {
+      menuToggle.style.display = 'none';
+      navList.style.display = 'flex';
+    }
+  }
+
+  window.addEventListener('resize', checkWidth);
+  checkWidth();
+
+  // Ajout de styles pour le menu responsive
+  const style = document.createElement('style');
+  style.textContent = `
+    @media (max-width: 768px) {
+      nav ul.show {
+        display: flex !important;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background-color: var(--secondary-color);
+        padding: 1rem;
+      }
+    }
+  `;
+  document.head.appendChild(style);
+});
+</script>
+
+</body></html>
